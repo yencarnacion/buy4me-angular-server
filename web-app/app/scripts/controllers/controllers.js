@@ -76,6 +76,8 @@ app.controller('NewCtrl', ['$scope', '$location', 'NeedItem',
     $scope.needItem.$save(function(needItem) {
       $location.path('/view/' + needItem.id);
     });
+    $scope.dismiss();
   };
+
 }]);
 

@@ -77,3 +77,15 @@ directives.directive("modalShow", function () {
     };
 
 });
+
+//directives.directive('myModal', function() {
+//    return {
+//        restrict: 'A',
+//        link: function(scope, element, attr) {
+//            scope.dismiss = function() {
+//                //element.modal('hide');
+//                element.attr('data-dismiss', 'modal');
+//            };
+//        }
+//    }
+//});
