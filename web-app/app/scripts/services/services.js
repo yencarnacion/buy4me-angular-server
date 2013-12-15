@@ -8,16 +8,10 @@ var ctx2 = '../';
 
 services.factory('NeedItem', ['$resource',
     function($resource) {
-  return $resource(ctx2+'/needItems/:id', {id: '@id'},
-      {},
-      { 'get':    {method:'GET'},
-          'save':   {method:'POST'},
-          'query':  {method:'GET', isArray:true},
-          'remove': {method:'DELETE'},
-          'delete': {method:'DELETE'},
-          'update': {method:'PUT' }
-      }
-      );
+        return $resource(ctx2+'/needItems/:id', {id: '@id'}, {
+            update: { method: 'PUT' }
+        });
+
 }]);
 
 services.factory('MultiItemLoader', ['NeedItem', '$q',
