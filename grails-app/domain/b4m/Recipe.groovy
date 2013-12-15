@@ -11,9 +11,10 @@ class Recipe {
         ingredients()
     }
 
+    static hasMany = [ingredients: Ingredient]
     String title;
     String description
-    List ingredients = new ArrayList()
+    List<Ingredient> ingredients = new ArrayList<Ingredient>()
 
     //static hasMany = [ingredients: Ingredient]
 
