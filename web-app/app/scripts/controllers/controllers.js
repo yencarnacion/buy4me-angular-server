@@ -1,13 +1,13 @@
 'use strict';
 
 //var ctx = '/buy4me-angular-server/app';
-var ctx = '../..'
+var ctx = '../app'
 var app = angular.module('guthub',
     ['guthub.directives', 'guthub.services']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-      when(ctx+ '/', {
+      when('/', {
         controller: 'ListCtrl',
         resolve: {
           needItems: ["MultiItemLoader", function(MultiItemLoader) {
@@ -74,9 +74,10 @@ app.controller('NewCtrl', ['$scope', '$location', 'NeedItem',
 
   $scope.save = function() {
     $scope.needItem.$save(function(needItem) {
-      $location.path('/view/' + needItem.id);
+      //$location.path('/view/' + needItem.id);
+      $location.path('/');
     });
-    $scope.dismiss();
+    //$scope.dismiss();
   };
 
 }]);

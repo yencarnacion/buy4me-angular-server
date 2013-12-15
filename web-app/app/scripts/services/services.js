@@ -5,12 +5,9 @@ var services = angular.module('guthub.services',
 
 
 var ctx2 = '../';
-
 services.factory('NeedItem', ['$resource',
     function($resource) {
-        return $resource(ctx2+'needItems/:id', {id: '@id'}, {
-            'update': { method: 'PUT' }
-        });
+        return $resource(ctx2+'needItems/:id', {id: '@id'});
 
 }]);
 
