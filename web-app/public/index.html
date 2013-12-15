@@ -2,13 +2,13 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="buy4meNeedItem">
+<html ng-app>
 <head>
     <!-- META -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Grails/Buy4Me</title>
+    <title>Grails/Buy4Me</title>
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
@@ -22,7 +22,7 @@
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-    <script src="core.js"></script>
+    <script src="needItems.js"></script>
 
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
@@ -31,42 +31,12 @@
 
     <!-- HEADER AND TODO COUNT -->
     <div class="jumbotron text-center">
-        <h1>I'm a NeedItem-aholic <span class="label label-info">{{ needItems.length }}</span></h1>
+        <h1><a href="needItems.html">I want Stuff</a></h1>
     </div>
 
-    <!-- FORM TO CREATE TODOS -->
-    <div id="needItem-form" class="row">
-        <div class="col-sm-8 col-sm-offset-2 text-center">
-            <form>
-                <div class="form-group">
-
-                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                    <input type="text" class="form-control input-lg text-center" placeholder="Stuff" ng-model="formData.title">
-                    From
-                    <input type="text" class="form-control input-lg text-center" placeholder="Somewhere" ng-model="formData.fromWhere">
-
-                </div>
-
-                <!-- createToDo() WILL CREATE NEW TODOS -->
-                <button type="submit" class="btn btn-primary btn-lg" ng-click="createNeedItem()">Add</button>
-            </form>
-        </div>
+    <div class="jumbotron text-center">
+        <h1><a href="traveling.html">I am traveling</a></h1>
     </div>
-
-    <!-- TODO LIST -->
-    <div id="needItem-list" class="row">
-        <div class="col-sm-4 col-sm-offset-4">
-
-            <!-- LOOP OVER THE TODOS IN $scope.todos -->
-            <div class="checkbox" ng-repeat="needItem in needItems">
-                <label>
-                    <input type="checkbox" ng-click="deleteNeedItem(needItem.id)"> {{ needItem.title }} from {{ needItem.fromWhere }}
-                </label>
-            </div>
-
-        </div>
-    </div>
-
 
 </div>
 
