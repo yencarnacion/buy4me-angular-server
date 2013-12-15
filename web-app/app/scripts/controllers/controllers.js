@@ -1,5 +1,6 @@
 'use strict';
 
+var ctx = '/buy4me-angular-server/app';
 var app = angular.module('guthub',
     ['guthub.directives', 'guthub.services']);
 
@@ -12,7 +13,7 @@ app.config(['$routeProvider', function($routeProvider) {
             return MultiRecipeLoader();
           }]
         },
-        templateUrl:'/views/list.html'
+        templateUrl:'views/list.html'
       }).when('/edit/:recipeId', {
         controller: 'EditCtrl',
         resolve: {
@@ -20,7 +21,7 @@ app.config(['$routeProvider', function($routeProvider) {
             return RecipeLoader();
           }]
         },
-        templateUrl:'/views/recipeForm.html'
+        templateUrl:'views/recipeForm.html'
       }).when('/view/:recipeId', {
         controller: 'ViewCtrl',
         resolve: {
@@ -28,11 +29,11 @@ app.config(['$routeProvider', function($routeProvider) {
             return RecipeLoader();
           }]
         },
-        templateUrl:'/views/viewRecipe.html'
+        templateUrl:'views/viewRecipe.html'
       }).when('/new', {
         controller: 'NewCtrl',
-        templateUrl:'/views/recipeForm.html'
-      }).otherwise({redirectTo:'/'});
+        templateUrl:'views/recipeForm.html'
+      }).otherwise({redirectTo:ctx+'/'});
 }]);
 
 app.controller('ListCtrl', ['$scope', 'recipes',

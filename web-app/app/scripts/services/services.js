@@ -3,9 +3,12 @@
 var services = angular.module('guthub.services',
     ['ngResource']);
 
+
+var ctx2 = '/buy4me-angular-server';
+
 services.factory('Recipe', ['$resource',
     function($resource) {
-  return $resource('/recipes/:id', {id: '@id'});
+  return $resource(ctx2+'/recipes/:id', {id: '@id'});
 }]);
 
 services.factory('MultiRecipeLoader', ['Recipe', '$q',

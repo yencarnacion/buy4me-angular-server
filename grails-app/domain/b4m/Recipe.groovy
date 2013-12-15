@@ -1,8 +1,7 @@
 package b4m
 
-import grails.rest.Resource
-
-@Resource(uri='/recipes', formats = ['json', 'xml'])
+import grails.rest.*
+@Resource(uri='/recipes', formats=['json', 'xml'])
 class Recipe {
 
     static constraints = {
@@ -14,8 +13,8 @@ class Recipe {
 
     String title;
     String description
-    //List ingredients
+    List ingredients = new ArrayList()
 
-    static hasMany = [ingredients: Ingredient]
+    //static hasMany = [ingredients: Ingredient]
 
 }
