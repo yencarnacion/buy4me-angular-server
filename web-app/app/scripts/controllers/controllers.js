@@ -9,83 +9,72 @@ app.config(['$routeProvider', function($routeProvider) {
       when('/', {
         controller: 'ListCtrl',
         resolve: {
-          recipes: ["MultiRecipeLoader", function(MultiRecipeLoader) {
-            return MultiRecipeLoader();
+          needItems: ["MultiItemLoader", function(MultiItemLoader) {
+            return MultiItemLoader();
           }]
         },
         templateUrl:'views/list.html'
-      }).when('/edit/:recipeId', {
+      }).when('/edit/:needItemId', {
         controller: 'EditCtrl',
         resolve: {
-          recipe: ["RecipeLoader", function(RecipeLoader) {
-            return RecipeLoader();
+          needItem: ["NeedItemLoader", function(NeedItemLoader) {
+            return NeedItemLoader();
           }]
         },
-        templateUrl:'views/recipeForm.html'
-      }).when('/view/:recipeId', {
+        templateUrl:'views/itemForm.html'
+      }).when('/view/:needItemId', {
         controller: 'ViewCtrl',
         resolve: {
-          recipe: ["RecipeLoader", function(RecipeLoader) {
-            return RecipeLoader();
+          needItem: ["NeedItemLoader", function(NeedItemLoader) {
+            return NeedItemLoader();
           }]
         },
-        templateUrl:'views/viewRecipe.html'
+        templateUrl:'views/viewItem.html'
       }).when('/new', {
         controller: 'NewCtrl',
-        templateUrl:'views/recipeForm.html'
+        templateUrl:'views/itemForm.html'
       }).otherwise({redirectTo:ctx+'/'});
 }]);
 
-app.controller('ListCtrl', ['$scope', 'recipes',
-    function($scope, recipes) {
-  $scope.recipes = recipes;
+app.controller('ListCtrl', ['$scope', 'needItems',
+    function($scope, needItems) {
+  $scope.needItems = needItems;
 }]);
 
-app.controller('ViewCtrl', ['$scope', '$location', 'recipe',
-    function($scope, $location, recipe) {
-  $scope.recipe = recipe;
+app.controller('ViewCtrl', ['$scope', '$location', 'needItem',
+    function($scope, $location, needItem) {
+  $scope.needItem = needItem;
 
   $scope.edit = function() {
-    $location.path('/edit/' + recipe.id);
+    $location.path('/edit/' + needItem.id);
   };
 }]);
 
-app.controller('EditCtrl', ['$scope', '$location', 'recipe',
-    function($scope, $location, recipe) {
-  $scope.recipe = recipe;
+app.controller('EditCtrl', ['$scope', '$location', 'needItem',
+    function($scope, $location, needItem) {
+  $scope.needItem = needItem;
 
   $scope.save = function() {
-    $scope.recipe.$save(function(recipe) {
-      $location.path('/view/' + recipe.id);
+    $scope.needItem.$update(function(needItem) {
+      $location.path('/view/' + needItem.id);
     });
   };
 
   $scope.remove = function() {
-    delete $scope.recipe;
+    delete $scope.needItem;
     $location.path('/');
   };
 }]);
 
-app.controller('NewCtrl', ['$scope', '$location', 'Recipe',
-    function($scope, $location, Recipe) {
-  $scope.recipe = new Recipe({
-    ingredients: [ {} ]
+app.controller('NewCtrl', ['$scope', '$location', 'NeedItem',
+    function($scope, $location, NeedItem) {
+  $scope.needItem = new NeedItem({
   });
 
   $scope.save = function() {
-    $scope.recipe.$save(function(recipe) {
-      $location.path('/view/' + recipe.id);
+    $scope.needItem.$save(function(needItem) {
+      $location.path('/view/' + needItem.id);
     });
   };
 }]);
 
-app.controller('IngredientsCtrl', ['$scope',
-    function($scope) {
-  $scope.addIngredient = function() {
-    var ingredients = $scope.recipe.ingredients;
-    ingredients[ingredients.length] = {};
-  };
-  $scope.removeIngredient = function(index) {
-    $scope.recipe.ingredients.splice(index, 1);
-  };
-}]);

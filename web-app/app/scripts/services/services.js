@@ -6,32 +6,41 @@ var services = angular.module('guthub.services',
 
 var ctx2 = '/buy4me-angular-server';
 
-services.factory('Recipe', ['$resource',
+services.factory('NeedItem', ['$resource',
     function($resource) {
-  return $resource(ctx2+'/recipes/:id', {id: '@id'});
+  return $resource(ctx2+'/needItems/:id', {id: '@id'},
+      {},
+      { 'get':    {method:'GET'},
+          'save':   {method:'POST'},
+          'query':  {method:'GET', isArray:true},
+          'remove': {method:'DELETE'},
+          'delete': {method:'DELETE'},
+          'update': {method:'PUT' }
+      }
+      );
 }]);
 
-services.factory('MultiRecipeLoader', ['Recipe', '$q',
-    function(Recipe, $q) {
+services.factory('MultiItemLoader', ['NeedItem', '$q',
+    function(NeedItem, $q) {
   return function() {
     var delay = $q.defer();
-    Recipe.query(function(recipes) {
-      delay.resolve(recipes);
+      NeedItem.query(function(needItems) {
+      delay.resolve(needItems);
     }, function() {
-      delay.reject('Unable to fetch recipes');
+      delay.reject('Unable to fetch need items');
     });
     return delay.promise;
   };
 }]);
 
-services.factory('RecipeLoader', ['Recipe', '$route', '$q',
-    function(Recipe, $route, $q) {
+services.factory('NeedItemLoader', ['NeedItem', '$route', '$q',
+    function(NeedItem, $route, $q) {
   return function() {
     var delay = $q.defer();
-    Recipe.get({id: $route.current.params.recipeId}, function(recipe) {
-      delay.resolve(recipe);
+    NeedItem.get({id: $route.current.params.needItemId}, function(needItem) {
+      delay.resolve(needItem);
     }, function() {
-      delay.reject('Unable to fetch recipe '  + $route.current.params.recipeId);
+      delay.reject('Unable to fetch need Item '  + $route.current.params.needItemId);
     });
     return delay.promise;
   };
