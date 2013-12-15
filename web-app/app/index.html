@@ -87,9 +87,9 @@
 
           <p id="focus"><a class="btn btn-primary btn-lg" href="#/new" role="button">New Need Item</a></p>
           <!-- Button trigger modal -->
-          <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#/new">
+          <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#needItemModal">
               Launch demo modal
-          </button>
+          </a>
       </div>
   </div>
 
@@ -105,7 +105,43 @@
   </div> <!-- /container -->
 
 
+  <div ng-controller="NewCtrl" class="modal fade" id="needItemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+              </div>
+              <div class="modal-body">
 
+                  <form name="needItemForm" ng-submit="save()" class="form-horizontal">
+
+                  <div class="control-group">
+                      <label class="control-label" for="title">Title:</label>
+                      <div class="controls">
+                          <input ng-model="needItem.title" class="input-xlarge" id="title" focus required>
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <label class="control-label" for="title">From Where:</label>
+                      <div class="controls">
+                          <input ng-model="needItem.fromWhere" class="input-xlarge" id="title" focus required>
+                      </div>
+                  </div>
+
+                      <div class="form-actions">
+                          <button class="btn btn-primary" ng-disabled="needItemForm.$invalid">Save</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                  </form>
+              </div>
+              <!--<div class="modal-footer">-->
+                  <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                  <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+              <!--</div>-->
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
   <!-- Bootstrap core JavaScript
   ================================================== -->
