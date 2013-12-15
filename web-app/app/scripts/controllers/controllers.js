@@ -1,6 +1,7 @@
 'use strict';
 
-var ctx = '/buy4me-angular-server/app';
+//var ctx = '/buy4me-angular-server/app';
+var ctx = '../../'
 var app = angular.module('guthub',
     ['guthub.directives', 'guthub.services']);
 

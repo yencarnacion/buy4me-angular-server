@@ -4,7 +4,7 @@ var services = angular.module('guthub.services',
     ['ngResource']);
 
 
-var ctx2 = '/buy4me-angular-server';
+var ctx2 = '../';
 
 services.factory('NeedItem', ['$resource',
     function($resource) {
