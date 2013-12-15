@@ -1,13 +1,13 @@
 'use strict';
 
 //var ctx = '/buy4me-angular-server/app';
-var ctx = '../../'
+var ctx = '../..'
 var app = angular.module('guthub',
     ['guthub.directives', 'guthub.services']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
-      when('/', {
+      when(ctx+ '/', {
         controller: 'ListCtrl',
         resolve: {
           needItems: ["MultiItemLoader", function(MultiItemLoader) {
